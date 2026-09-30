@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "mx.casarrubias.mibotiquin",
+        "sha256_cert_fingerprints": ["5F:CD:71:0B:E5:AC:CF:38:58:FA:88:B8:12:DE:54:B6:54:D4:65:9B:EC:10:0B:E6:D1:6D:0B:83:ED:D6:B3:0C"]
+      }
+    }]
