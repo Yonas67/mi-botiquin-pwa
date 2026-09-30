@@ -4,24 +4,41 @@
   "short_name": "Botiquín",
   "description": "Inventario doméstico privado con lotes, caducidades y reposición.",
   "lang": "es-MX",
+  "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "any",
   "background_color": "#f5f7fa",
   "theme_color": "#0f6cbd",
+  "categories": [
+    "medical",
+    "utilities",
+    "productivity"
+  ],
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "./icon-192.png",
+      "src": "https://mi-botiquin-pwa.onrender.com/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./icon-512.png",
+      "src": "https://mi-botiquin-pwa.onrender.com/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "https://mi-botiquin-pwa.onrender.com/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
