@@ -1,102 +1,348 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0f6cbd"><meta name="mobile-web-app-capable" content="yes">
-<title>Mi Botiquín</title><link rel="manifest" href="./manifest.json">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f6cbd">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Mi Botiquín</title>
+<link rel="manifest" href="./manifest.json">
 <style>
-:root{--bg:#f5f7fa;--panel:#fff;--text:#17202a;--muted:#6b7280;--line:#e5e7eb;--brand:#0f6cbd;--brand2:#e8f2fb;--good:#16803c;--warn:#d99a00;--orange:#e56d15;--bad:#c62828;color-scheme:light}
-:root.dark{--bg:#0f1720;--panel:#16212d;--text:#edf4fb;--muted:#9aa8b7;--line:#2a3948;--brand:#55a6e8;--brand2:#17344d;color-scheme:dark}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text)}button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
-.top{position:sticky;top:0;z-index:20;padding:18px;background:var(--bg);display:flex;justify-content:space-between;align-items:center}.top h1{margin:2px 0;font-size:24px}.eyebrow{font-size:11px;letter-spacing:.12em;color:var(--brand);font-weight:800}.icon{width:42px;height:42px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:14px}
-main{max-width:1000px;margin:auto;padding:0 16px 100px}.screen{display:none}.screen.active{display:block}.hero{background:linear-gradient(135deg,var(--brand),#084d86);color:#fff;border-radius:24px;padding:20px;display:flex;justify-content:space-between;align-items:center}.hero strong{display:block;font-size:27px}.hero small{opacity:.85}.primary,.secondary{border:0;border-radius:14px;padding:12px 16px;font-weight:750}.primary{background:var(--brand);color:#fff}.hero .primary{background:#fff;color:#0f5c9d}.secondary{background:var(--panel);border:1px solid var(--line);color:var(--text)}.wide{width:100%}.search{margin:14px 0;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px}.search input{width:100%;border:0;outline:0;background:transparent;color:var(--text)}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.stat,.panel,.card{background:var(--panel);border:1px solid var(--line);border-radius:18px}.stat{padding:15px}.n{font-size:26px;font-weight:850}.label,.sub{font-size:12px;color:var(--muted)}.panel{padding:16px;margin:12px 0}.panel h2,.screenhead h2{margin:0}.screenhead{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px}.cardlist{display:grid;gap:10px}.card{padding:14px;display:flex;gap:12px;align-items:center}.grow{flex:1;min-width:0}.title{font-weight:800}.badge{display:inline-block;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:800;background:var(--brand2);color:var(--brand);margin-top:5px}.tiny{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:10px;padding:7px 9px;font-size:12px}.actions{display:flex;gap:6px;flex-wrap:wrap}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px}.green{background:var(--good)}.yellow{background:var(--warn)}.orange{background:var(--orange)}.red{background:var(--bad)}.gray{background:#64748b}
-.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.quick button{border:1px solid var(--line);background:var(--bg);border-radius:16px;padding:13px 4px}.quick span{display:block;font-size:11px;margin-top:4px}.locations{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.loc{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px}
-.bottom{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--panel);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:7px 8px max(7px,env(safe-area-inset-bottom))}.nav{border:0;background:transparent;color:var(--muted);display:grid;place-items:center;font-size:19px}.nav span{font-size:10px}.nav.active{color:var(--brand)}.addnav{width:48px;height:48px;border-radius:16px;background:var(--brand);color:#fff;justify-self:center;transform:translateY(-13px)}
-.modal{position:fixed;z-index:50;inset:0;background:rgba(5,15,25,.5);display:grid;align-items:end}.sheet{background:var(--panel);border-radius:24px 24px 0 0;max-height:94vh;overflow:auto;padding:18px}.sheethead{display:flex;justify-content:space-between;align-items:center}.formgrid{display:grid;gap:12px}.two{grid-template-columns:1fr}.formgrid label{display:grid;gap:6px;font-size:12px;font-weight:700;color:var(--muted)}input,select{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:12px;padding:11px}.photoacts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.photo{display:grid;place-items:center;text-align:center;min-height:72px;border:1px dashed var(--brand);background:var(--brand2);border-radius:16px;color:var(--brand);font-weight:800}.photo input{display:none}.preview{height:180px;border-radius:16px;background-size:cover;background-position:center;margin:10px 0}.notice{font-size:12px;color:var(--muted);line-height:1.5;padding:12px;border:1px solid var(--line);border-radius:14px}.toast{position:fixed;z-index:90;bottom:90px;left:50%;transform:translateX(-50%);background:#111827;color:white;padding:11px 15px;border-radius:12px;max-width:90vw}.auth{min-height:100vh;display:grid;place-items:center;padding:20px}.authcard{width:min(420px,100%);background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:24px}.authcard h1{margin:4px 0}.tabs{display:flex;gap:8px;margin:14px 0}.tabs button{flex:1}.empty{text-align:center;color:var(--muted);padding:28px}.timeline{border-left:2px solid var(--line);margin-left:7px}.event{padding:0 0 18px 18px;position:relative}.event:before{content:"";position:absolute;left:-6px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--brand)}
-@media(min-width:760px){.stats{grid-template-columns:repeat(5,1fr)}.locations{grid-template-columns:repeat(4,1fr)}.two{grid-template-columns:repeat(2,1fr)}.sheet{width:min(760px,90vw);margin:auto;border-radius:24px}.modal{align-items:center}}
+:root{--bg:#f5f7fa;--panel:#fff;--panel2:#f8fafc;--text:#17202a;--muted:#6b7280;--line:#e5e7eb;--brand:#0f6cbd;--brand2:#e8f2fb;--good:#16803c;--warn:#d99a00;--orange:#e56d15;--bad:#c62828;--shadow:0 12px 30px rgba(15,23,42,.08);color-scheme:light}
+:root.dark{--bg:#0f1720;--panel:#16212d;--panel2:#111c27;--text:#edf4fb;--muted:#9aa8b7;--line:#2a3948;--brand:#55a6e8;--brand2:#17344d;--shadow:0 12px 30px rgba(0,0,0,.22);color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.top{position:sticky;top:0;z-index:20;padding:15px 18px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center}.top h1{margin:2px 0;font-size:24px}.eyebrow{font-size:11px;letter-spacing:.12em;color:var(--brand);font-weight:850}.icon{width:42px;height:42px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:14px}
+main{max-width:1040px;margin:auto;padding:0 16px 105px}.screen{display:none}.screen.active{display:block}.hero{background:linear-gradient(135deg,#56aaf0,var(--brand));color:#fff;border-radius:26px;padding:20px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow)}.hero strong{display:block;font-size:28px}.hero small{opacity:.9}
+.primary,.secondary,.danger{border:0;border-radius:14px;padding:12px 16px;font-weight:800}.primary{background:var(--brand);color:#fff}.hero .primary{background:#fff;color:#0f5c9d}.secondary{background:var(--panel);border:1px solid var(--line);color:var(--text)}.danger{background:#fee2e2;color:#991b1b}.wide{width:100%}.compact{padding:8px 10px;font-size:12px}
+.search{margin:14px 0;background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:12px}.search input{width:100%;border:0;outline:0;background:transparent;color:var(--text)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.stat,.panel,.card{background:var(--panel);border:1px solid var(--line);border-radius:19px}.stat{padding:15px}.n{font-size:27px;font-weight:900}.label,.sub,.hint{font-size:12px;color:var(--muted)}.hint{line-height:1.45}.panel{padding:16px;margin:12px 0;box-shadow:var(--shadow)}.panel h2,.screenhead h2{margin:0}.screenhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0 14px}.cardlist{display:grid;gap:10px}.card{padding:14px;display:flex;gap:12px;align-items:center}.grow{flex:1;min-width:0}.title{font-weight:850}.badge{display:inline-flex;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:800;background:var(--brand2);color:var(--brand);margin-top:5px}.badge.warn{background:#fff3cd;color:#8a5b00}.badge.bad{background:#fee2e2;color:#991b1b}.tiny{border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:10px;padding:7px 9px;font-size:12px}.actions{display:flex;gap:6px;flex-wrap:wrap}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px}.green{background:var(--good)}.yellow{background:var(--warn)}.orange{background:var(--orange)}.red{background:var(--bad)}.gray{background:#64748b}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.quick button{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:16px;padding:13px 4px}.quick span{display:block;font-size:11px;margin-top:4px}.locations{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.loc{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:14px}
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--panel);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:7px 8px max(7px,env(safe-area-inset-bottom))}.nav{border:0;background:transparent;color:var(--muted);display:grid;place-items:center;font-size:19px}.nav span{font-size:10px}.nav.active{color:var(--brand)}.addnav{width:52px;height:52px;border-radius:17px;background:var(--brand);color:#fff;justify-self:center;transform:translateY(-14px);box-shadow:var(--shadow)}
+.modal{position:fixed;z-index:50;inset:0;background:rgba(5,15,25,.55);display:grid;align-items:end}.sheet{background:var(--panel);border-radius:25px 25px 0 0;max-height:95vh;overflow:auto;padding:18px}.sheethead{display:flex;justify-content:space-between;align-items:center;position:sticky;top:-18px;background:var(--panel);z-index:4;padding:9px 0}
+.formgrid{display:grid;gap:12px}.two{grid-template-columns:1fr}.formgrid label{display:grid;gap:6px;font-size:12px;font-weight:750;color:var(--muted)}input,select,textarea{width:100%;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;padding:11px}textarea{min-height:120px;resize:vertical}
+.photoacts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.photo{display:grid;place-items:center;text-align:center;min-height:70px;border:1px dashed var(--brand);background:var(--brand2);border-radius:16px;color:var(--brand);font-weight:850}.photo input{display:none}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.photo-card{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel2)}.photo-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.photo-card select{border:0;border-top:1px solid var(--line);border-radius:0;padding:7px;font-size:10px}.photo-remove{position:absolute;top:5px;right:5px;width:28px;height:28px;border:0;border-radius:50%;background:rgba(0,0,0,.65);color:white;font-weight:900}
+.notice{font-size:12px;color:var(--muted);line-height:1.55;padding:13px;border:1px solid var(--line);border-radius:14px;background:var(--panel2)}.notice.warn{border-color:#f59e0b;background:color-mix(in srgb,#f59e0b 9%,var(--panel))}
+.toast{position:fixed;z-index:90;bottom:92px;left:50%;transform:translateX(-50%);background:#111827;color:white;padding:11px 15px;border-radius:12px;max-width:90vw}.auth{min-height:100vh;display:grid;place-items:center;padding:20px}.authcard{width:min(420px,100%);background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:24px}.authcard h1{margin:4px 0}.tabs{display:flex;gap:8px;margin:14px 0}.tabs button{flex:1}.empty{text-align:center;color:var(--muted);padding:28px}.timeline{border-left:2px solid var(--line);margin-left:7px}.event{padding:0 0 18px 18px;position:relative}.event:before{content:"";position:absolute;left:-6px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--brand)}
+.segment{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.segment button{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px;border-radius:12px;font-size:12px;font-weight:800}.segment button.active{background:var(--brand);color:white;border-color:var(--brand)}
+.qtybox{border:1px solid var(--line);background:var(--panel2);padding:13px;border-radius:16px;margin-top:10px}.metric{display:grid;grid-template-columns:1fr auto;align-items:end;gap:10px}.metric strong{font-size:23px}.rx-item{border:1px solid var(--line);border-radius:17px;padding:14px;background:var(--panel2);margin:10px 0}.rx-result{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.rx-result div{border-radius:12px;padding:10px;background:var(--panel)}.rx-result b{display:block;font-size:18px}.rx-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.checkline{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--text)}.checkline input{width:auto;margin-top:2px}
+@media(min-width:760px){.stats{grid-template-columns:repeat(5,1fr)}.locations{grid-template-columns:repeat(4,1fr)}.two{grid-template-columns:repeat(2,1fr)}.sheet{width:min(780px,92vw);margin:auto;border-radius:24px}.modal{align-items:center}.photo-grid{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
 <section id="auth" class="auth">
-<div class="authcard"><div class="eyebrow">MI BOTIQUÍN PWA</div><h1>Acceso privado</h1><p class="sub">Esta versión es independiente de Hatchable y está preparada para instalarse como app.</p>
-<div class="tabs"><button class="primary" id="tabLogin">Entrar</button><button class="secondary" id="tabRegister">Crear cuenta</button></div>
-<form id="authForm" class="formgrid"><label>Correo<input id="aEmail" type="email" required></label><label>Contraseña<input id="aPass" type="password" minlength="8" required></label><button class="primary wide" id="authSubmit">Entrar</button></form>
-<div id="authMsg" class="sub" style="margin-top:10px"></div></div></section>
-
-<div id="app" class="hidden">
-<header class="top"><div><div class="eyebrow">INVENTARIO DEL HOGAR</div><h1>Mi Botiquín</h1></div><div><button class="icon" id="theme">◐</button> <button class="icon" id="logout">↪</button></div></header>
-<main>
-<section id="home" class="screen active">
-<div class="hero"><div><small>Tu inventario</small><strong id="heroCount">0 productos</strong></div><button class="primary" data-add>＋ Agregar</button></div>
-<div class="search"><input id="searchHome" placeholder="Buscar medicamento, principio activo, laboratorio..."></div>
-<div id="stats" class="stats"></div>
-<div class="panel"><h2>Necesitan atención</h2><div id="attention"></div></div>
-<div class="panel"><h2>Accesos rápidos</h2><div class="quick"><button data-scan>📷<span>Escanear</span></button><button data-add>＋<span>Agregar</span></button><button data-go="shopping">🛒<span>Comprar</span></button><button data-go="expiry">📅<span>Caducidad</span></button></div></div>
-<div class="panel"><h2>Por ubicación</h2><div id="locSummary" class="locations"></div></div>
+  <div class="authcard">
+    <div class="eyebrow">MI BOTIQUÍN</div><h1>Acceso privado</h1>
+    <p class="sub">Inventario familiar sincronizado entre tus dispositivos.</p>
+    <div class="tabs"><button class="primary" id="tabLogin">Entrar</button><button class="secondary" id="tabRegister">Crear cuenta</button></div>
+    <form id="authForm" class="formgrid">
+      <label>Correo<input id="aEmail" type="email" required></label>
+      <label>Contraseña<input id="aPass" type="password" minlength="8" required></label>
+      <button class="primary wide" id="authSubmit">Entrar</button>
+    </form>
+    <div id="authMsg" class="sub" style="margin-top:10px"></div>
+  </div>
 </section>
 
-<section id="inventory" class="screen"><div class="screenhead"><div><h2>Inventario</h2><div class="sub">Productos y lotes</div></div><button class="primary" data-add>＋ Agregar</button></div><div class="search"><input id="searchInv" placeholder="Buscar"></div><div id="invList" class="cardlist"></div></section>
-<section id="expiry" class="screen"><div class="screenhead"><div><h2>Caducidades</h2><div class="sub">FEFO: primero vence, primero sale</div></div></div><div id="expList" class="cardlist"></div></section>
-<section id="shopping" class="screen"><div class="screenhead"><div><h2>Lista de compra</h2><div class="sub">Reposiciones pendientes</div></div><button class="secondary" id="manualBuy">＋ Manual</button></div><div id="shopList" class="cardlist"></div></section>
-<section id="history" class="screen"><div class="screenhead"><div><h2>Historial</h2><div class="sub">Movimientos registrados</div></div></div><div id="histList" class="timeline"></div></section>
-<section id="locations" class="screen"><div class="screenhead"><div><h2>Ubicaciones</h2><div class="sub">Dónde está cada producto</div></div><button class="secondary" id="newLoc">＋ Ubicación</button></div><div id="locList" class="locations"></div></section>
-<section id="settings" class="screen"><div class="screenhead"><div><h2>Configuración</h2><div class="sub">Alertas y respaldos</div></div></div><div class="panel formgrid"><label>Verde desde días<input id="sGreen" type="number"></label><label>Amarillo desde días<input id="sYellow" type="number"></label><label>Naranja desde días<input id="sOrange" type="number"></label><label>Tema<select id="sTheme"><option value="auto">Automático</option><option value="light">Claro</option><option value="dark">Oscuro</option></select></label><button class="primary" id="saveSet">Guardar</button></div><div class="panel"><button class="secondary wide" id="backup">Descargar respaldo JSON</button></div><div class="notice">Inventario doméstico, no sistema de diagnóstico ni prescripción. No calcula dosis ni sustituye indicaciones médicas.</div></section>
-</main>
-<nav class="bottom"><button class="nav active" data-go="home">⌂<span>Inicio</span></button><button class="nav" data-go="inventory">▦<span>Inventario</span></button><button class="nav addnav" data-add>＋</button><button class="nav" data-go="expiry">◷<span>Caducidad</span></button><button class="nav" data-go="shopping">🛒<span>Comprar</span></button></nav>
+<div id="app" class="hidden">
+<header class="top">
+  <div><div class="eyebrow">INVENTARIO DEL HOGAR</div><h1>Mi Botiquín</h1></div>
+  <div><button class="icon" id="theme">◐</button> <button class="icon" id="logout">↪</button></div>
+</header>
+<main>
+<section id="home" class="screen active">
+  <div class="hero"><div><small>Tu inventario</small><strong id="heroCount">0 productos</strong></div><button class="primary" data-add>＋ Agregar</button></div>
+  <div class="search"><input id="searchHome" placeholder="Buscar medicamento, principio activo, laboratorio..."></div>
+  <div id="stats" class="stats"></div>
+  <div class="panel"><h2>Necesitan atención</h2><div id="attention"></div></div>
+  <div class="panel"><h2>Accesos rápidos</h2><div class="quick">
+    <button data-scan>📷<span>Fotos</span></button><button data-add>＋<span>Agregar</span></button><button data-go="prescriptions">🧾<span>Recetas</span></button><button data-go="expiry">📅<span>Caducidad</span></button>
+  </div></div>
+  <div class="panel"><h2>Por ubicación</h2><div id="locSummary" class="locations"></div></div>
+  <div class="panel"><h2>Administración</h2><div class="quick">
+    <button data-go="history">↺<span>Historial</span></button><button data-go="locations">⌖<span>Ubicaciones</span></button><button data-go="settings">⚙<span>Ajustes</span></button><button data-go="shopping">🛒<span>Comprar</span></button>
+  </div></div>
+</section>
 
-<div id="modal" class="modal hidden"><div class="sheet"><div class="sheethead"><div><div class="eyebrow">CAPTURA RÁPIDA</div><h2 id="modalTitle">Agregar medicamento</h2></div><button class="icon" id="close">×</button></div>
-<div class="photoacts"><label class="photo">📷 Tomar foto<input id="camera" type="file" accept="image/*" capture="environment"></label><label class="photo">🖼 Elegir imagen<input id="gallery" type="file" accept="image/*"></label></div><div id="preview" class="preview hidden"></div><button id="ocr" class="secondary wide hidden">Leer texto visible de la foto</button><div id="ocrText" class="sub"></div>
-<form id="medForm" class="formgrid" style="margin-top:14px"><input id="pId" type="hidden"><div class="two formgrid"><label>Nombre comercial *<input id="pName" required></label><label>Principio activo<input id="pActive"></label><label>Concentración<input id="pConc"></label><label>Presentación<input id="pPres"></label><label>Laboratorio<input id="pLab"></label><label>Código de barras<input id="pBar"></label><label>Unidad<select id="pUnit"><option>unidades</option><option>tabletas</option><option>cápsulas</option><option>ampolletas</option><option>sobres</option><option>dosis</option><option>piezas</option><option>frascos</option><option>cajas</option></select></label><label>Stock mínimo<input id="pMin" type="number" min="0"></label></div><hr><h3>Nuevo lote</h3><div class="two formgrid"><label>Cantidad<input id="lQty" type="number" min="0"></label><label>Lote<input id="lLot"></label><label>Caducidad<input id="lExp" type="date"></label><label>Ubicación<select id="lLoc"></select></label><label>Fecha compra<input id="lDate" type="date"></label><label>Precio<input id="lPrice" type="number" min="0" step=".01"></label><label>Tienda / farmacia<input id="lStore"></label></div><button class="primary wide">Guardar medicamento</button></form>
+<section id="inventory" class="screen">
+  <div class="screenhead"><div><h2>Inventario</h2><div class="sub">Productos, existencias y lotes</div></div><button class="primary compact" data-add>＋ Agregar</button></div>
+  <div class="search"><input id="searchInv" placeholder="Buscar"></div><div id="invList" class="cardlist"></div>
+</section>
+<section id="expiry" class="screen"><div class="screenhead"><div><h2>Caducidades</h2><div class="sub">FEFO: primero vence, primero sale</div></div></div><div id="expList" class="cardlist"></div></section>
+<section id="shopping" class="screen"><div class="screenhead"><div><h2>Lista de compra</h2><div class="sub">Reposiciones pendientes</div></div><button class="secondary compact" id="manualBuy">＋ Manual</button></div><div id="shopList" class="cardlist"></div></section>
+<section id="history" class="screen"><div class="screenhead"><div><h2>Historial</h2><div class="sub">Movimientos registrados</div></div></div><div id="histList" class="timeline"></div></section>
+<section id="locations" class="screen"><div class="screenhead"><div><h2>Ubicaciones</h2><div class="sub">Dónde está cada producto</div></div><button class="secondary compact" id="newLoc">＋ Ubicación</button></div><div id="locList" class="locations"></div></section>
+
+<section id="prescriptions" class="screen">
+  <div class="screenhead"><div><h2>Recetas</h2><div class="sub">Compara lo prescrito con tus existencias</div></div><button class="primary compact" id="newRx">＋ Receta</button></div>
+  <div class="notice warn">La app no prescribe ni corrige dosis. Sólo transcribe una receta, te pide confirmarla y calcula cantidades a partir de lo que está escrito.</div>
+  <div id="rxList" class="cardlist" style="margin-top:12px"></div>
+</section>
+
+<section id="settings" class="screen">
+  <div class="screenhead"><div><h2>Configuración</h2><div class="sub">Alertas y respaldo</div></div></div>
+  <div class="panel formgrid">
+    <label>Verde desde días<input id="sGreen" type="number"></label><label>Amarillo desde días<input id="sYellow" type="number"></label><label>Naranja desde días<input id="sOrange" type="number"></label>
+    <label>Tema<select id="sTheme"><option value="auto">Automático</option><option value="light">Claro</option><option value="dark">Oscuro</option></select></label>
+    <button class="primary" id="saveSet">Guardar</button>
+  </div>
+  <div class="panel"><button class="secondary wide" id="backup">Descargar respaldo JSON</button></div>
+</section>
+</main>
+
+<nav class="bottom">
+  <button class="nav active" data-go="home">⌂<span>Inicio</span></button>
+  <button class="nav" data-go="inventory">▦<span>Inventario</span></button>
+  <button class="nav addnav" data-add>＋</button>
+  <button class="nav" data-go="prescriptions">🧾<span>Recetas</span></button>
+  <button class="nav" data-go="shopping">🛒<span>Comprar</span></button>
+</nav>
+
+<!-- MEDICAMENTO -->
+<div id="medModal" class="modal hidden"><div class="sheet">
+  <div class="sheethead"><div><div class="eyebrow">CAPTURA COMPLETA</div><h2 id="modalTitle">Agregar medicamento</h2></div><button class="icon" id="closeMed">×</button></div>
+  <div class="notice">Puedes añadir varias fotos: <b>etiqueta frontal</b>, reverso, <b>lote/caducidad</b> y <b>contenido</b>. La app combina el texto de todas para mejorar la lectura.</div>
+  <div class="photoacts" style="margin-top:10px">
+    <label class="photo">📷 Tomar foto<input id="camera" type="file" accept="image/*" capture="environment"></label>
+    <label class="photo">🖼 Elegir fotos<input id="gallery" type="file" accept="image/*" multiple></label>
+  </div>
+  <div id="photoGrid" class="photo-grid"></div>
+  <button id="ocr" class="secondary wide hidden">Leer todas las fotos</button>
+  <div id="ocrStatus" class="hint" style="margin-top:7px"></div>
+
+  <form id="medForm" class="formgrid" style="margin-top:15px">
+    <input id="pId" type="hidden">
+    <div class="two formgrid">
+      <label>Nombre comercial *<input id="pName" required></label><label>Principio activo<input id="pActive"></label>
+      <label>Concentración<input id="pConc"></label><label>Presentación<input id="pPres"></label>
+      <label>Laboratorio<input id="pLab"></label><label>Código de barras<input id="pBar"></label>
+      <label>Unidad<select id="pUnit"><option>unidades</option><option>tabletas</option><option>cápsulas</option><option>ampolletas</option><option>sobres</option><option>dosis</option><option>piezas</option><option>ml</option><option>g</option><option>frascos</option><option>cajas</option></select></label>
+      <label>Unidades por caja / frasco<input id="pPack" type="number" min="0" step=".1" placeholder="Ej. 20 tabletas"></label>
+      <label>Tipo de envase<select id="pContainer"><option value="other">Otro</option><option value="sealed">Caja cerrada</option><option value="blister">Blíster</option><option value="pill_bottle">Frasco tabletas/cápsulas</option><option value="liquid">Frasco líquido</option><option value="tube">Tubo / crema</option></select></label>
+      <label>Stock mínimo<input id="pMin" type="number" min="0" step=".1"></label>
+    </div>
+
+    <hr><h3>Existencia actual</h3>
+    <div class="segment" id="qtyMode"><button type="button" class="active" data-qmode="manual">Manual</button><button type="button" data-qmode="assistant">Asistente</button></div>
+    <div id="manualQty" class="qtybox"><label>Cantidad que tienes ahora<input id="lQty" type="number" min="0" step=".1"></label><div class="hint">Esta cantidad prevalece sobre cualquier estimación por foto.</div></div>
+    <div id="assistantQty" class="qtybox hidden">
+      <div id="assistBlister" class="hidden two formgrid"><label>Espacios totales del blíster<input id="blisterTotal" type="number" min="0"></label><label>Espacios vacíos<input id="blisterEmpty" type="number" min="0"></label></div>
+      <div id="assistBottle" class="hidden formgrid"><label>Cantidad original del frasco<input id="bottleOriginal" type="number" min="0"></label><label>Estimación visual<select id="bottlePercent"><option value="">Selecciona</option><option value=".25">≈ 25% restante</option><option value=".5">≈ 50% restante</option><option value=".75">≈ 75% restante</option><option value="1">≈ lleno</option></select></label><div class="notice warn">En un frasco abierto las pastillas se ocultan entre sí. Esta cifra será marcada como estimación y debe confirmarse manualmente si necesitas exactitud.</div></div>
+      <div id="assistLiquid" class="hidden two formgrid"><label>Capacidad total (ml/g)<input id="liquidTotal" type="number" min="0" step=".1"></label><label>Porcentaje restante<select id="liquidPercent"><option value="">Selecciona</option><option value=".1">10%</option><option value=".25">25%</option><option value=".5">50%</option><option value=".75">75%</option><option value="1">100%</option></select></label></div>
+      <div id="assistOther" class="hidden notice">Para este tipo de envase usa la captura manual. Puedes apoyarte en las fotos, pero la app no intentará inventar una cantidad.</div>
+      <div class="metric" style="margin-top:10px"><div><div class="sub">Cantidad calculada</div><strong id="assistResult">—</strong></div><button type="button" class="primary compact" id="useEstimate">Usar cantidad</button></div>
+    </div>
+
+    <hr><h3>Lote y compra</h3>
+    <div class="two formgrid">
+      <label>Lote<input id="lLot"></label><label>Caducidad<input id="lExp" type="date"></label>
+      <label>Ubicación<select id="lLoc"></select></label><label>Fecha compra<input id="lDate" type="date"></label>
+      <label>Precio<input id="lPrice" type="number" min="0" step=".01"></label><label>Tienda / farmacia<input id="lStore"></label>
+    </div>
+    <button class="primary wide">Guardar medicamento</button>
+  </form>
 </div></div>
-<div id="toast" class="toast hidden"></div></div>
+
+<!-- RECETA -->
+<div id="rxModal" class="modal hidden"><div class="sheet">
+  <div class="sheethead"><div><div class="eyebrow">RECETA</div><h2>Nueva receta</h2></div><button class="icon" id="closeRx">×</button></div>
+  <div class="notice warn">La lectura es asistida. Si una dosis, frecuencia o duración no se distingue con claridad, debes corregirla antes de guardar. La app sólo hace aritmética con los datos que confirmes.</div>
+  <div class="photoacts" style="margin-top:10px">
+    <label class="photo">📷 Foto receta<input id="rxCamera" type="file" accept="image/*" capture="environment"></label>
+    <label class="photo">📄 Imagen o PDF<input id="rxFiles" type="file" accept="image/*,application/pdf" multiple></label>
+  </div>
+  <div id="rxPhotoGrid" class="photo-grid"></div>
+  <button id="rxOcr" class="secondary wide hidden">Leer receta</button>
+  <div id="rxStatus" class="hint" style="margin-top:7px"></div>
+  <div class="formgrid" style="margin-top:12px">
+    <label>Texto leído / corregido<textarea id="rxText" placeholder="El texto de la receta aparecerá aquí. Puedes corregirlo."></textarea></label>
+    <button class="secondary" id="parseRx" type="button">Convertir texto en renglones</button>
+    <div class="two formgrid"><label>Fecha de receta<input id="rxDate" type="date"></label><label>Médico / consultorio<input id="rxPrescriber"></label></div>
+  </div>
+  <div id="rxItems"></div>
+  <button class="secondary wide" id="addRxItem" type="button">＋ Agregar medicamento manualmente</button>
+  <label class="checkline" style="margin:14px 0"><input id="rxConfirm" type="checkbox">Confirmo que revisé las dosis, frecuencias y duración y que coinciden con la receta.</label>
+  <div class="rx-actions"><button class="primary" id="saveRx" type="button">Guardar receta</button><button class="secondary" id="rxToShopping" type="button">Agregar faltantes a compra</button></div>
+</div></div>
+
+<div id="toast" class="toast hidden"></div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-const BASE='https://vhuwdutivmfqcwpomxdf.supabase.co/functions/v1/mi-botiquin/';let TOKEN=localStorage.getItem('mb_token')||'';
-let mode='login',state={products:[],lots:[],locations:[],shopping:[],movements:[],settings:null},photoData=null;
+const BASE='https://vhuwdutivmfqcwpomxdf.supabase.co/functions/v1/mi-botiquin/';
+let TOKEN=localStorage.getItem('mb_token')||'';
+let mode='login',state={products:[],lots:[],locations:[],shopping:[],movements:[],settings:null,prescriptions:[],prescriptionItems:[]};
+let medPhotos=[],rxPhotos=[],qtySource='manual',qtyConfidence=100,rxItemsDraft=[];
 const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-function toast(m){const t=$('#toast');t.textContent=m;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),2500)}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),2800)}
 async function api(name,body){const h={};if(body)h['Content-Type']='application/json';if(TOKEN)h['Authorization']='Bearer '+TOKEN;const r=await fetch(BASE+'?api='+name,{method:body?'POST':'GET',headers:h,body:body?JSON.stringify(body):undefined});const j=await r.json().catch(()=>({}));if(r.status===401){TOKEN='';localStorage.removeItem('mb_token');showAuth();throw Error('Sesión requerida')}if(!r.ok)throw Error(j.error||'No se pudo completar');return j}
-function showAuth(){$('#auth').classList.remove('hidden');$('#app').classList.add('hidden')}
-function showApp(){$('#auth').classList.add('hidden');$('#app').classList.remove('hidden')}
+function showAuth(){$('#auth').classList.remove('hidden');$('#app').classList.add('hidden')}function showApp(){$('#auth').classList.add('hidden');$('#app').classList.remove('hidden')}
 function days(d){if(!d)return 99999;const a=new Date();a.setHours(0,0,0,0);return Math.ceil((new Date(d+'T00:00:00')-a)/86400000)}
 function fmt(d){return d?new Intl.DateTimeFormat('es-MX',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(d+'T12:00:00')):'Sin fecha'}
 function dot(d){const n=days(d),s=state.settings||{};if(n<0)return'gray';if(n<+(s.expiry_orange_days||30))return'red';if(n<+(s.expiry_yellow_days||90))return'orange';if(n<+(s.expiry_green_days||180))return'yellow';return'green'}
 function go(id){$$('.screen').forEach(x=>x.classList.toggle('active',x.id===id));$$('.nav').forEach(x=>x.classList.toggle('active',x.dataset.go===id));scrollTo(0,0)}
 async function load(){state=await api('snapshot');showApp();render()}
 function render(){
- const ps=state.products||[],low=ps.filter(p=>+p.stock>0&&+p.stock<=+p.min_stock).length,zero=ps.filter(p=>+p.stock<=0).length,exp=ps.filter(p=>+p.stock>0&&days(p.nearest_expiry)<0).length,soon=ps.filter(p=>+p.stock>0&&days(p.nearest_expiry)>=0&&days(p.nearest_expiry)<=90).length;
- $('#heroCount').textContent=ps.length+' productos';$('#stats').innerHTML=[['green',ps.length,'En existencia'],['orange',soon,'Próximos'],['yellow',low,'Stock bajo'],['red',exp,'Caducados'],['gray',(state.shopping||[]).length,'Por comprar']].map(x=>'<div class="stat"><div><i class="dot '+x[0]+'"></i><span class="n">'+x[1]+'</span></div><div class="label">'+x[2]+'</div></div>').join('');
+ const ps=state.products||[],low=ps.filter(p=>+p.stock>0&&+p.stock<=+p.min_stock).length,exp=ps.filter(p=>+p.stock>0&&days(p.nearest_expiry)<0).length,soon=ps.filter(p=>+p.stock>0&&days(p.nearest_expiry)>=0&&days(p.nearest_expiry)<=90).length;
+ $('#heroCount').textContent=ps.length+' productos';
+ $('#stats').innerHTML=[['green',ps.length,'En existencia'],['orange',soon,'Próximos'],['yellow',low,'Stock bajo'],['red',exp,'Caducados'],['gray',(state.shopping||[]).length,'Por comprar']].map(x=>'<div class="stat"><div><i class="dot '+x[0]+'"></i><span class="n">'+x[1]+'</span></div><div class="label">'+x[2]+'</div></div>').join('');
  const att=[];ps.forEach(p=>{if(days(p.nearest_expiry)<0&&+p.stock>0)att.push([p,'Caducado']);else if(days(p.nearest_expiry)<=90&&+p.stock>0)att.push([p,'Caduca en '+Math.max(0,days(p.nearest_expiry))+' días']);if(+p.stock<=+p.min_stock)att.push([p,+p.stock?'Stock bajo':'Sin existencia'])});
  $('#attention').innerHTML=att.slice(0,6).map(x=>'<div class="card"><div class="grow"><div class="title">'+esc(x[0].name)+'</div><div class="sub">'+esc(x[1])+'</div></div></div>').join('')||'<div class="empty">Sin pendientes prioritarios.</div>';
- renderInventory();renderExpiry();renderShop();renderHistory();renderLocations();renderSettings();fillLoc();
+ renderInventory();renderExpiry();renderShop();renderHistory();renderLocations();renderSettings();renderRxList();fillLoc();
 }
-function card(p){return '<div class="card"><i class="dot '+dot(p.nearest_expiry)+'"></i><div class="grow"><div class="title">'+esc(p.name)+' '+esc(p.concentration||'')+'</div><div class="sub">'+(+p.stock)+' '+esc(p.unit||'unidades')+' · '+fmt(p.nearest_expiry)+'</div></div><div class="actions"><button class="tiny" data-use="'+p.id+'">− Usar</button><button class="tiny" data-lot="'+p.id+'">＋ Lote</button><button class="tiny" data-buy="'+p.id+'">🛒</button></div></div>'}
-function renderInventory(){const q=($('#searchInv').value||'').toLowerCase();const arr=state.products.filter(p=>[p.name,p.active_ingredient,p.laboratory,p.barcode].some(v=>String(v||'').toLowerCase().includes(q)));$('#invList').innerHTML=arr.map(card).join('')||'<div class="empty">No hay productos.</div>';bindCards()}
-function bindCards(){$$('[data-use]').forEach(b=>b.onclick=async()=>{const p=state.products.find(x=>x.id===b.dataset.use);const q=prompt('¿Cuántas '+p.unit+' vas a usar?','1');if(q)await act('use',{product_id:p.id,quantity:+q})});$$('[data-lot]').forEach(b=>b.onclick=()=>openAdd(state.products.find(x=>x.id===b.dataset.lot)));$$('[data-buy]').forEach(b=>b.onclick=()=>act('shoppingAdd',{product_id:b.dataset.buy}))}
-function renderExpiry(){$('#expList').innerHTML=state.lots.filter(l=>+l.quantity>0).sort((a,b)=>(a.expiry_date||'9999').localeCompare(b.expiry_date||'9999')).map(l=>'<div class="card"><i class="dot '+dot(l.expiry_date)+'"></i><div class="grow"><div class="title">'+esc(l.product_name)+'</div><div class="sub">Lote '+esc(l.lot_number||'sin dato')+' · '+l.quantity+' · '+fmt(l.expiry_date)+' · '+esc(l.location_name||'Sin ubicación')+'</div></div></div>').join('')||'<div class="empty">Sin lotes activos.</div>'}
+function productCard(p){
+ const source=(state.lots||[]).find(l=>l.product_id===p.id&&+l.quantity>0)?.quantity_source;
+ return '<div class="card"><i class="dot '+dot(p.nearest_expiry)+'"></i><div class="grow"><div class="title">'+esc(p.name)+' '+esc(p.concentration||'')+'</div><div class="sub">'+(+p.stock)+' '+esc(p.unit||'unidades')+' · '+fmt(p.nearest_expiry)+'</div>'+(source==='estimated'?'<span class="badge warn">existencia estimada</span>':'')+(p.photo_count?'<span class="badge">'+p.photo_count+' fotos</span>':'')+'</div><div class="actions"><button class="tiny" data-use="'+p.id+'">− Usar</button><button class="tiny" data-lot="'+p.id+'">＋ Lote</button><button class="tiny" data-buy="'+p.id+'">🛒</button></div></div>'
+}
+function renderInventory(){const q=($('#searchInv').value||'').toLowerCase();const arr=state.products.filter(p=>[p.name,p.active_ingredient,p.laboratory,p.barcode].some(v=>String(v||'').toLowerCase().includes(q)));$('#invList').innerHTML=arr.map(productCard).join('')||'<div class="empty">No hay productos.</div>';bindCards()}
+function bindCards(){$$('[data-use]').forEach(b=>b.onclick=async()=>{const p=state.products.find(x=>x.id===b.dataset.use);const q=prompt('¿Cuántas '+(p.unit||'unidades')+' vas a usar?','1');if(q)await act('use',{product_id:p.id,quantity:+q})});$$('[data-lot]').forEach(b=>b.onclick=()=>openMed(state.products.find(x=>x.id===b.dataset.lot)));$$('[data-buy]').forEach(b=>b.onclick=()=>act('shoppingAdd',{product_id:b.dataset.buy}))}
+function renderExpiry(){$('#expList').innerHTML=(state.lots||[]).filter(l=>+l.quantity>0).sort((a,b)=>(a.expiry_date||'9999').localeCompare(b.expiry_date||'9999')).map(l=>'<div class="card"><i class="dot '+dot(l.expiry_date)+'"></i><div class="grow"><div class="title">'+esc(l.product_name)+'</div><div class="sub">Lote '+esc(l.lot_number||'sin dato')+' · '+l.quantity+' · '+fmt(l.expiry_date)+' · '+esc(l.location_name||'Sin ubicación')+'</div>'+(l.quantity_source==='estimated'?'<span class="badge warn">estimado '+(l.quantity_confidence||'')+'%</span>':'')+'</div></div>').join('')||'<div class="empty">Sin lotes activos.</div>'}
 function renderShop(){$('#shopList').innerHTML=(state.shopping||[]).map(s=>'<div class="card"><div class="grow"><div class="title">'+esc(s.label)+'</div><div class="sub">'+esc(s.reason||'Reposición')+'</div></div><button class="tiny" data-done="'+s.id+'">Comprado</button></div>').join('')||'<div class="empty">Lista vacía.</div>';$$('[data-done]').forEach(b=>b.onclick=()=>act('shoppingDone',{id:b.dataset.done}))}
 function renderHistory(){$('#histList').innerHTML=(state.movements||[]).map(m=>'<div class="event"><div class="sub">'+new Date(m.created_at).toLocaleString('es-MX')+'</div><div class="title">'+esc(m.product_name)+'</div><div class="sub">'+esc(m.movement_type)+' · '+m.quantity+' '+esc(m.detail||'')+'</div></div>').join('')||'<div class="empty">Sin movimientos.</div>'}
-function renderLocations(){const c={};state.lots.filter(l=>+l.quantity>0).forEach(l=>c[l.location_id]=(c[l.location_id]||0)+1);const h=state.locations.map(l=>'<div class="loc"><b>'+esc(l.name)+'</b><div class="sub">'+(c[l.id]||0)+' lotes</div></div>').join('');$('#locSummary').innerHTML=h;$('#locList').innerHTML=h}
+function renderLocations(){const c={};(state.lots||[]).filter(l=>+l.quantity>0).forEach(l=>c[l.location_id]=(c[l.location_id]||0)+1);const h=(state.locations||[]).map(l=>'<div class="loc"><b>'+esc(l.name)+'</b><div class="sub">'+(c[l.id]||0)+' lotes</div></div>').join('');$('#locSummary').innerHTML=h;$('#locList').innerHTML=h}
 function renderSettings(){const s=state.settings||{};$('#sGreen').value=s.expiry_green_days||180;$('#sYellow').value=s.expiry_yellow_days||90;$('#sOrange').value=s.expiry_orange_days||30;$('#sTheme').value=s.theme||'auto';applyTheme()}
-function fillLoc(){$('#lLoc').innerHTML='<option value="">Sin ubicación</option>'+state.locations.map(l=>'<option value="'+l.id+'">'+esc(l.name)+'</option>').join('')}
+function fillLoc(){$('#lLoc').innerHTML='<option value="">Sin ubicación</option>'+(state.locations||[]).map(l=>'<option value="'+l.id+'">'+esc(l.name)+'</option>').join('')}
 function applyTheme(){let t=state.settings?.theme||'auto';if(t==='auto')t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.classList.toggle('dark',t==='dark')}
-async function act(action,data={}){try{state=await api('action',Object.assign({action},data));render();return true}catch(e){toast(e.message)}}
-function resetForm(){$('#medForm').reset();$('#pId').value='';$('#lDate').value=new Date().toISOString().slice(0,10);photoData=null;$('#preview').classList.add('hidden');$('#ocr').classList.add('hidden');$('#ocrText').textContent=''}
-function openAdd(p){resetForm();$('#modal').classList.remove('hidden');if(p){$('#pId').value=p.id;$('#pName').value=p.name||'';$('#pActive').value=p.active_ingredient||'';$('#pConc').value=p.concentration||'';$('#pPres').value=p.presentation||'';$('#pLab').value=p.laboratory||'';$('#pBar').value=p.barcode||'';$('#pUnit').value=p.unit||'unidades';$('#pMin').value=p.min_stock||0;$('#modalTitle').textContent='Agregar nuevo lote'}else $('#modalTitle').textContent='Agregar medicamento'}
-async function img(file){if(!file)return;const r=new FileReader();r.onload=()=>{photoData=r.result;$('#preview').style.backgroundImage='url("'+photoData+'")';$('#preview').classList.remove('hidden');$('#ocr').classList.remove('hidden')};r.readAsDataURL(file)}
-async function runOcr(){if(!photoData||!window.Tesseract)return;$('#ocrText').textContent='Leyendo texto…';try{const r=await Tesseract.recognize(photoData,'spa');const text=r.data.text||'';$('#ocrText').textContent=text.slice(0,500);const mg=text.match(/(\d{2,4})\s?mg/i);if(mg&&!$('#pConc').value)$('#pConc').value=mg[0];const lot=text.match(/(?:lote|lot)\s*[:#-]?\s*([A-Z0-9-]{3,})/i);if(lot)$('#lLot').value=lot[1];const exp=text.match(/(?:cad|exp|vence)[^0-9]{0,8}(\d{1,2})[\/.-](\d{2,4})/i);if(exp){let y=exp[2].length===2?'20'+exp[2]:exp[2];$('#lExp').value=y+'-'+String(exp[1]).padStart(2,'0')+'-28'}toast('OCR terminado. Revisa los datos antes de guardar.')}catch(e){$('#ocrText').textContent='No se pudo leer la foto. Puedes capturar manualmente.'}}
+async function act(action,data={}){try{state=await api('action',Object.assign({action},data));render();return true}catch(e){toast(e.message);return false}}
+
+function renderRxList(){
+ const rxs=state.prescriptions||[],items=state.prescriptionItems||[];
+ $('#rxList').innerHTML=rxs.map(r=>{
+  const its=items.filter(i=>i.prescription_id===r.id),short=its.reduce((s,i)=>s+(+i.shortage||0),0);
+  return '<div class="card"><div class="grow"><div class="title">'+esc(r.title||'Receta')+'</div><div class="sub">'+fmt(r.prescription_date)+' · '+its.length+' medicamento(s)</div>'+(short>0?'<span class="badge bad">Faltan '+short+' unidades</span>':'<span class="badge">Existencia suficiente / revisar</span>')+'</div><button class="tiny" data-viewrx="'+r.id+'">Ver</button></div>';
+ }).join('')||'<div class="empty">Aún no has guardado recetas.</div>';
+ $$('[data-viewrx]').forEach(b=>b.onclick=()=>viewSavedRx(b.dataset.viewrx));
+}
+function viewSavedRx(id){
+ const r=(state.prescriptions||[]).find(x=>x.id===id),its=(state.prescriptionItems||[]).filter(x=>x.prescription_id===id);
+ const lines=its.map(i=>i.medication_name+' · necesario '+(i.total_needed??'?')+' · inventario '+(i.inventory_available??0)+' · faltan '+(i.shortage??'?')+(i.packs_to_buy?' · comprar '+i.packs_to_buy+' caja(s)':'')).join('\n');
+ alert((r?.title||'Receta')+'\n\n'+lines);
+}
+
+async function compressFile(file,max=1100,quality=.68){
+ return new Promise((resolve,reject)=>{const img=new Image(),fr=new FileReader();fr.onload=()=>{img.onload=()=>{const s=Math.min(1,max/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext('2d').drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',quality))};img.onerror=reject;img.src=fr.result};fr.onerror=reject;fr.readAsDataURL(file)})
+}
+async function addMedFiles(files){for(const f of Array.from(files).slice(0,8-medPhotos.length)){try{medPhotos.push({dataUrl:await compressFile(f),kind:'label',filename:f.name})}catch{}}renderMedPhotos()}
+function renderMedPhotos(){
+ $('#photoGrid').innerHTML=medPhotos.map((p,i)=>'<div class="photo-card"><img src="'+p.dataUrl+'"><button type="button" class="photo-remove" data-prm="'+i+'">×</button><select data-pkind="'+i+'"><option value="label" '+(p.kind==='label'?'selected':'')+'>Etiqueta</option><option value="expiry" '+(p.kind==='expiry'?'selected':'')+'>Lote/caducidad</option><option value="contents" '+(p.kind==='contents'?'selected':'')+'>Contenido</option><option value="other">Otra</option></select></div>').join('');
+ $('#ocr').classList.toggle('hidden',medPhotos.length===0);
+ $$('[data-prm]').forEach(b=>b.onclick=()=>{medPhotos.splice(+b.dataset.prm,1);renderMedPhotos()});
+ $$('[data-pkind]').forEach(s=>s.onchange=()=>medPhotos[+s.dataset.pkind].kind=s.value);
+}
+function resetMed(){
+ $('#medForm').reset();$('#pId').value='';$('#lDate').value=new Date().toISOString().slice(0,10);medPhotos=[];renderMedPhotos();qtySource='manual';qtyConfidence=100;setQtyMode('manual');$('#ocrStatus').textContent='';refreshAssistant();
+}
+function openMed(p=null){resetMed();$('#medModal').classList.remove('hidden');if(p){$('#pId').value=p.id;$('#pName').value=p.name||'';$('#pActive').value=p.active_ingredient||'';$('#pConc').value=p.concentration||'';$('#pPres').value=p.presentation||'';$('#pLab').value=p.laboratory||'';$('#pBar').value=p.barcode||'';$('#pUnit').value=p.unit||'unidades';$('#pPack').value=p.package_size||'';$('#pContainer').value=p.container_type||'other';$('#pMin').value=p.min_stock||0;$('#modalTitle').textContent='Agregar lote / actualizar'}else $('#modalTitle').textContent='Agregar medicamento';refreshAssistant()}
+function setQtyMode(m){$$('#qtyMode button').forEach(b=>b.classList.toggle('active',b.dataset.qmode===m));$('#manualQty').classList.toggle('hidden',m!=='manual');$('#assistantQty').classList.toggle('hidden',m!=='assistant')}
+function refreshAssistant(){
+ const t=$('#pContainer').value;
+ ['assistBlister','assistBottle','assistLiquid','assistOther'].forEach(id=>$('#'+id).classList.add('hidden'));
+ if(t==='blister')$('#assistBlister').classList.remove('hidden');else if(t==='pill_bottle')$('#assistBottle').classList.remove('hidden');else if(t==='liquid'||t==='tube')$('#assistLiquid').classList.remove('hidden');else $('#assistOther').classList.remove('hidden');
+ calcEstimate();
+}
+function calcEstimate(){
+ const t=$('#pContainer').value;let q=null,conf=40;
+ if(t==='blister'){const total=+$('#blisterTotal').value,empty=+$('#blisterEmpty').value;if(total>=0&&empty>=0&&total>=empty){q=total-empty;conf=95}}
+ else if(t==='pill_bottle'){const total=+$('#bottleOriginal').value,p=+$('#bottlePercent').value;if(total>0&&p>0){q=Math.round(total*p);conf=40}}
+ else if(t==='liquid'||t==='tube'){const total=+$('#liquidTotal').value,p=+$('#liquidPercent').value;if(total>0&&p>0){q=+(total*p).toFixed(1);conf=50}}
+ $('#assistResult').textContent=q===null?'—':q+' '+($('#pUnit').value||'unidades');$('#assistResult').dataset.qty=q===null?'':q;$('#assistResult').dataset.conf=conf;
+}
+function guessFromText(text){
+ const clean=text.replace(/\r/g,'\n');
+ const mg=clean.match(/(\d+(?:[.,]\d+)?\s?(?:mg|mcg|g|ml|mL))/i);if(mg&&!$('#pConc').value)$('#pConc').value=mg[1];
+ const lot=clean.match(/(?:lote|lot|batch)\s*[:#-]?\s*([A-Z0-9-]{3,})/i);if(lot&&!$('#lLot').value)$('#lLot').value=lot[1];
+ const exp=clean.match(/(?:cad(?:ucidad)?|exp(?:ira)?|vence)[^0-9]{0,12}(\d{1,2})[\/.\-](\d{2,4})/i);if(exp&&!$('#lExp').value){const y=exp[2].length===2?'20'+exp[2]:exp[2];$('#lExp').value=y+'-'+String(exp[1]).padStart(2,'0')+'-28'}
+ const qty=clean.match(/(?:cont(?:iene)?|contenido|c\/)\s*[:\-]?\s*(\d+)\s*(tabletas|capsulas|cápsulas|comprimidos|ml|mL)/i);if(qty&&!$('#pPack').value)$('#pPack').value=qty[1];
+ const lines=clean.split('\n').map(x=>x.trim()).filter(x=>x.length>3&&/[A-Za-zÁÉÍÓÚáéíóú]/.test(x));if(lines.length&&!$('#pName').value){let cand=lines.find(x=>x.length<45&&!/lote|cad|exp|contenido|registro|laboratorio/i.test(x));if(cand)$('#pName').value=cand.slice(0,50)}
+}
+async function runMultiOcr(){
+ if(!medPhotos.length||!window.Tesseract)return;$('#ocr').disabled=true;$('#ocrStatus').textContent='Leyendo '+medPhotos.length+' foto(s)…';
+ try{
+  const worker=await Tesseract.createWorker('spa');await worker.setParameters({tessedit_pageseg_mode:'6'});
+  let texts=[];
+  for(let i=0;i<medPhotos.length;i++){ $('#ocrStatus').textContent='Leyendo foto '+(i+1)+' de '+medPhotos.length+'…';const r=await worker.recognize(medPhotos[i].dataUrl);texts.push(r.data.text||'') }
+  await worker.terminate();const text=texts.join('\n');guessFromText(text);$('#ocrStatus').textContent='Lectura terminada. Revisa los campos; si algo no coincide, corrígelo manualmente.';toast('Fotos procesadas.');
+ }catch(e){$('#ocrStatus').textContent='No se pudo completar la lectura. Puedes registrar todo manualmente.'}finally{$('#ocr').disabled=false}
+}
+
+async function addRxFiles(files){
+ for(const f of Array.from(files).slice(0,6-rxPhotos.length)){
+  try{
+   if(f.type==='application/pdf'){
+    if(!window.pdfjsLib)continue;
+    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const buf=await f.arrayBuffer(),pdf=await pdfjsLib.getDocument({data:buf}).promise;
+    for(let p=1;p<=Math.min(pdf.numPages,4)&&rxPhotos.length<6;p++){
+      const page=await pdf.getPage(p),vp=page.getViewport({scale:1.35}),c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+      rxPhotos.push({dataUrl:c.toDataURL('image/jpeg',.67),kind:'prescription',filename:f.name+' p'+p});
+    }
+   }else rxPhotos.push({dataUrl:await compressFile(f,1200,.72),kind:'prescription',filename:f.name});
+  }catch{}
+ }
+ renderRxPhotos();
+}
+function renderRxPhotos(){
+ $('#rxPhotoGrid').innerHTML=rxPhotos.map((p,i)=>'<div class="photo-card"><img src="'+p.dataUrl+'"><button type="button" class="photo-remove" data-rxrm="'+i+'">×</button></div>').join('');
+ $('#rxOcr').classList.toggle('hidden',rxPhotos.length===0);$$('[data-rxrm]').forEach(b=>b.onclick=()=>{rxPhotos.splice(+b.dataset.rxrm,1);renderRxPhotos()})
+}
+async function runRxOcr(){
+ if(!rxPhotos.length||!window.Tesseract)return;$('#rxOcr').disabled=true;$('#rxStatus').textContent='Leyendo receta…';
+ try{const worker=await Tesseract.createWorker('spa');await worker.setParameters({tessedit_pageseg_mode:'6'});let tx=[];for(let i=0;i<rxPhotos.length;i++){ $('#rxStatus').textContent='Leyendo página '+(i+1)+' de '+rxPhotos.length+'…';const r=await worker.recognize(rxPhotos[i].dataUrl);tx.push(r.data.text||'') }await worker.terminate();$('#rxText').value=tx.join('\n');$('#rxStatus').textContent='Texto listo. Corrige cualquier error y después conviértelo en renglones.';toast('Receta leída.')}catch{$('#rxStatus').textContent='No se pudo leer con precisión. Puedes escribir la receta manualmente.'}finally{$('#rxOcr').disabled=false}
+}
+function normalize(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
+function matchProduct(name,conc){
+ const n=normalize(name),c=normalize(conc);let best=null,score=0;
+ for(const p of state.products||[]){const pn=normalize(p.name+' '+(p.active_ingredient||'')),pc=normalize(p.concentration);let s=0;if(n&&pn.includes(n))s+=4;else if(n&&n.includes(normalize(p.name)))s+=3;if(c&&pc===c)s+=3;else if(c&&pc.includes(c))s+=2;if(s>score){score=s;best=p}}
+ return score>=3?best:null;
+}
+function parseRxText(){
+ const lines=$('#rxText').value.split(/\n+/).map(x=>x.trim()).filter(x=>x.length>3);const out=[];
+ for(const line of lines){
+  const freq=line.match(/cada\s*(\d+(?:[.,]\d+)?)\s*(?:h|hr|hrs|hora|horas)/i);
+  const times=line.match(/(\d+(?:[.,]\d+)?)\s*(?:veces|tomas)\s*(?:al|por)\s*d[ií]a/i);
+  const dur=line.match(/(?:por|durante)\s*(\d+(?:[.,]\d+)?)\s*d[ií]as?/i);
+  const dose=line.match(/(\d+(?:[.,]\d+)?)\s*(tableta(?:s)?|tab(?:s)?|c[aá]psula(?:s)?|caps(?:s)?|ml|mL|sobre(?:s)?|ampolleta(?:s)?|gota(?:s)?)/i);
+  const conc=line.match(/(\d+(?:[.,]\d+)?\s*(?:mg|mcg|g|ml|mL)(?:\s*\/\s*\d+(?:[.,]\d+)?\s*(?:ml|mL))?)/i);
+  if(!(freq||times||dur||dose||conc))continue;
+  let cut=line.length;[conc,dose,freq,times].forEach(m=>{if(m&&m.index<cut)cut=m.index});let name=line.slice(0,cut).replace(/^[\d.)\-\s]+/,'').replace(/[:,-]+$/,'').trim();if(!name)name='Medicamento';
+  const product=matchProduct(name,conc?.[1]||'');
+  out.push({medication_name:name,concentration:conc?.[1]||'',dose_amount:dose?parseFloat(dose[1].replace(',','.')):'',dose_unit:dose?.[2]||'',interval_hours:freq?parseFloat(freq[1].replace(',','.')):'',times_per_day:times?parseFloat(times[1].replace(',','.')):'',duration_days:dur?parseFloat(dur[1].replace(',','.')):'',product_id:product?.id||'',confirmed:false});
+ }
+ rxItemsDraft=out.length?out:[emptyRxItem()];renderRxItems();
+}
+function emptyRxItem(){return {medication_name:'',concentration:'',dose_amount:'',dose_unit:'tabletas',interval_hours:'',times_per_day:'',duration_days:'',product_id:'',confirmed:false}}
+function productOptions(selected){return '<option value="">Sin vincular</option>'+(state.products||[]).map(p=>'<option value="'+p.id+'" '+(p.id===selected?'selected':'')+'>'+esc(p.name)+' '+esc(p.concentration||'')+'</option>').join('')}
+function rxCalc(it){
+ const p=(state.products||[]).find(x=>x.id===it.product_id),perDay=+it.times_per_day>0?+it.times_per_day:(+it.interval_hours>0?24/+it.interval_hours:0),total=(+it.dose_amount>0&&perDay>0&&+it.duration_days>0)?+(+it.dose_amount*perDay*+it.duration_days).toFixed(2):null,avail=p?+p.usable_stock||0:0,short=total===null?null:Math.max(0,+(total-avail).toFixed(2)),packs=short!==null&&p&&+p.package_size>0?Math.ceil(short/+p.package_size):null;return {total,avail,short,packs}
+}
+function renderRxItems(){
+ $('#rxItems').innerHTML=rxItemsDraft.map((it,i)=>{const c=rxCalc(it);return '<div class="rx-item" data-rxi="'+i+'"><div class="screenhead"><b>Medicamento '+(i+1)+'</b><button type="button" class="tiny" data-rxdel="'+i+'">Quitar</button></div><div class="two formgrid"><label>Nombre<input data-rxf="medication_name" value="'+esc(it.medication_name)+'"></label><label>Concentración<input data-rxf="concentration" value="'+esc(it.concentration)+'"></label><label>Vincular con inventario<select data-rxf="product_id">'+productOptions(it.product_id)+'</select></label><label>Cantidad por toma<input type="number" step=".1" min="0" data-rxf="dose_amount" value="'+esc(it.dose_amount)+'"></label><label>Unidad<input data-rxf="dose_unit" value="'+esc(it.dose_unit||'')+'"></label><label>Cada cuántas horas<input type="number" step=".1" min="0" data-rxf="interval_hours" value="'+esc(it.interval_hours)+'" placeholder="Ej. 8"></label><label>O tomas por día<input type="number" step=".1" min="0" data-rxf="times_per_day" value="'+esc(it.times_per_day)+'" placeholder="Ej. 3"></label><label>Duración (días)<input type="number" step=".1" min="0" data-rxf="duration_days" value="'+esc(it.duration_days)+'"></label></div><div class="rx-result"><div><span class="sub">Necesitas</span><b>'+(c.total??'—')+'</b></div><div><span class="sub">Inventario útil</span><b>'+c.avail+'</b></div><div><span class="sub">Faltan</span><b>'+(c.short??'—')+'</b></div></div>'+(c.packs?'<div class="badge bad">≈ '+c.packs+' caja(s) a comprar según presentación registrada</div>':'')+'</div>'}).join('');
+ $$('[data-rxdel]').forEach(b=>b.onclick=()=>{rxItemsDraft.splice(+b.dataset.rxdel,1);renderRxItems()});
+ $$('.rx-item [data-rxf]').forEach(el=>el.oninput=el.onchange=()=>{const box=el.closest('.rx-item'),i=+box.dataset.rxi;rxItemsDraft[i][el.dataset.rxf]=el.value;renderRxItems()});
+}
+function openRx(){rxPhotos=[];rxItemsDraft=[];$('#rxText').value='';$('#rxDate').value=new Date().toISOString().slice(0,10);$('#rxPrescriber').value='';$('#rxConfirm').checked=false;$('#rxStatus').textContent='';renderRxPhotos();renderRxItems();$('#rxModal').classList.remove('hidden')}
+
 $('#authForm').onsubmit=async e=>{e.preventDefault();try{const j=await api(mode,{email:$('#aEmail').value,password:$('#aPass').value});if(j.token){TOKEN=j.token;localStorage.setItem('mb_token',TOKEN)}if(j.ok)await load()}catch(err){$('#authMsg').textContent=err.message}};
 $('#tabLogin').onclick=()=>{mode='login';$('#authSubmit').textContent='Entrar'};$('#tabRegister').onclick=()=>{mode='register';$('#authSubmit').textContent='Crear cuenta'};
-$$('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));$$('[data-add]').forEach(b=>b.onclick=()=>openAdd());$$('[data-scan]').forEach(b=>b.onclick=()=>{openAdd();setTimeout(()=>$('#camera').click(),80)});
-$('#close').onclick=()=>$('#modal').classList.add('hidden');$('#camera').onchange=e=>img(e.target.files[0]);$('#gallery').onchange=e=>img(e.target.files[0]);$('#ocr').onclick=runOcr;$('#searchInv').oninput=renderInventory;$('#searchHome').oninput=e=>{$('#searchInv').value=e.target.value;go('inventory');renderInventory()};
-$('#medForm').onsubmit=async e=>{e.preventDefault();const product={id:$('#pId').value||null,name:$('#pName').value,active_ingredient:$('#pActive').value,concentration:$('#pConc').value,presentation:$('#pPres').value,laboratory:$('#pLab').value,barcode:$('#pBar').value,unit:$('#pUnit').value,min_stock:+($('#pMin').value||0)};const lot={quantity:+($('#lQty').value||0),lot_number:$('#lLot').value,expiry_date:$('#lExp').value||null,location_id:$('#lLoc').value||null,purchase_date:$('#lDate').value||null,price:+($('#lPrice').value||0),store:$('#lStore').value,photoData};if(await act('saveProduct',{product,lot})){$('#modal').classList.add('hidden');toast('Guardado.')}};
+$$('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));$$('[data-add]').forEach(b=>b.onclick=()=>openMed());$$('[data-scan]').forEach(b=>b.onclick=()=>{openMed();setTimeout(()=>$('#camera').click(),80)});
+$('#closeMed').onclick=()=>$('#medModal').classList.add('hidden');$('#camera').onchange=e=>addMedFiles(e.target.files);$('#gallery').onchange=e=>addMedFiles(e.target.files);$('#ocr').onclick=runMultiOcr;$('#searchInv').oninput=renderInventory;$('#searchHome').oninput=e=>{$('#searchInv').value=e.target.value;go('inventory');renderInventory()};
+$$('#qtyMode button').forEach(b=>b.onclick=()=>setQtyMode(b.dataset.qmode));$('#pContainer').onchange=refreshAssistant;['blisterTotal','blisterEmpty','bottleOriginal','bottlePercent','liquidTotal','liquidPercent'].forEach(id=>$('#'+id).oninput=$('#'+id).onchange=calcEstimate);
+$('#useEstimate').onclick=()=>{const q=$('#assistResult').dataset.qty;if(q===''){toast('Completa los datos del asistente.');return}$('#lQty').value=q;qtySource='estimated';qtyConfidence=+$('#assistResult').dataset.conf||40;setQtyMode('manual');toast('Cantidad estimada aplicada. Puedes corregirla manualmente.')};
+$('#lQty').oninput=()=>{if(document.activeElement===$('#lQty')){qtySource='manual';qtyConfidence=100}};
+$('#medForm').onsubmit=async e=>{e.preventDefault();const product={id:$('#pId').value||null,name:$('#pName').value,active_ingredient:$('#pActive').value,concentration:$('#pConc').value,presentation:$('#pPres').value,laboratory:$('#pLab').value,barcode:$('#pBar').value,unit:$('#pUnit').value,min_stock:+($('#pMin').value||0),package_size:+($('#pPack').value||0)||null,container_type:$('#pContainer').value};const lot={quantity:+($('#lQty').value||0),original_quantity:+($('#pPack').value||0)||null,quantity_source:qtySource,quantity_confidence:qtyConfidence,lot_number:$('#lLot').value,expiry_date:$('#lExp').value||null,location_id:$('#lLoc').value||null,purchase_date:$('#lDate').value||null,price:+($('#lPrice').value||0),store:$('#lStore').value};if(await act('saveProduct',{product,lot,photos:medPhotos})){$('#medModal').classList.add('hidden');toast('Medicamento guardado.')}};
+
+$('#newRx').onclick=openRx;$('#closeRx').onclick=()=>$('#rxModal').classList.add('hidden');$('#rxCamera').onchange=e=>addRxFiles(e.target.files);$('#rxFiles').onchange=e=>addRxFiles(e.target.files);$('#rxOcr').onclick=runRxOcr;$('#parseRx').onclick=parseRxText;$('#addRxItem').onclick=()=>{rxItemsDraft.push(emptyRxItem());renderRxItems()};
+$('#saveRx').onclick=async()=>{if(!$('#rxConfirm').checked){toast('Confirma que revisaste los datos de la receta.');return}if(!rxItemsDraft.length){toast('Agrega al menos un medicamento.');return}const items=rxItemsDraft.map(x=>({...x,confirmed:true}));const ok=await act('savePrescription',{prescription:{title:'Receta '+($('#rxDate').value||''),prescription_date:$('#rxDate').value||null,prescriber:$('#rxPrescriber').value,raw_text:$('#rxText').value,source_type:rxPhotos.length?'photo':'manual'},items,photos:rxPhotos});if(ok){$('#rxModal').classList.add('hidden');toast('Receta guardada.')}};
+$('#rxToShopping').onclick=async()=>{let n=0;for(const it of rxItemsDraft){const c=rxCalc(it);if(c.short>0){const p=(state.products||[]).find(x=>x.id===it.product_id);await act('shoppingAdd',{product_id:p?.id||null,label:p?.name||it.medication_name,reason:'Faltante para receta: '+c.short+' '+(p?.unit||it.dose_unit||'unidades')+(c.packs?' (≈ '+c.packs+' caja(s))':'')});n++}}toast(n?n+' faltante(s) agregados a compra.':'No hay faltantes calculados.')};
+
 $('#manualBuy').onclick=()=>{const x=prompt('¿Qué necesitas comprar?');if(x)act('shoppingAdd',{label:x,reason:'Agregado manualmente'})};$('#newLoc').onclick=()=>{const x=prompt('Nombre de la ubicación');if(x)act('location',{name:x})};
 $('#saveSet').onclick=()=>act('settings',{settings:{expiry_green_days:+$('#sGreen').value,expiry_yellow_days:+$('#sYellow').value,expiry_orange_days:+$('#sOrange').value,theme:$('#sTheme').value}}).then(()=>toast('Configuración guardada.'));
-$('#theme').onclick=()=>document.documentElement.classList.toggle('dark');$('#logout').onclick=async()=>{TOKEN='';localStorage.removeItem('mb_token');showAuth()};$('#backup').onclick=async()=>{const d=await api('backup');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:'application/json'}));a.download='mi-botiquin-respaldo.json';a.click()};
+$('#theme').onclick=()=>document.documentElement.classList.toggle('dark');$('#logout').onclick=()=>{TOKEN='';localStorage.removeItem('mb_token');showAuth()};$('#backup').onclick=async()=>{const d=await api('backup');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:'application/json'}));a.download='mi-botiquin-respaldo.json';a.click()};
 if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 load().catch(()=>showAuth());
 </script>
-</body></html>
+</body>
+</html>
